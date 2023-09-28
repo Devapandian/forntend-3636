@@ -1,18 +1,21 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider ,signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider ,FacebookAuthProvider,GithubAuthProvider,signInWithPopup } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCmrQbquEWu6AmTdwx_Hune8DAUS8HXjAs",
-  authDomain: "login-in-85856.firebaseapp.com",
-  projectId: "login-in-85856",
-  storageBucket: "login-in-85856.appspot.com",
-  messagingSenderId: "96659129698",
-  appId: "1:96659129698:web:012f79f37a7a0ae61c983b"
+  apiKey: "AIzaSyAKz1Fdf8y8QEv_N5vUaX9RWlfkX53iWaA",
+  authDomain: "fir-3f53e.firebaseapp.com",
+  projectId: "fir-3f53e",
+  storageBucket: "fir-3f53e.appspot.com",
+  messagingSenderId: "246231238781",
+  appId: "1:246231238781:web:5dc51fcd94bf19e2494914"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
-export {auth, provider}
+
+export {auth, googleProvider,githubProvider,facebookProvider}

@@ -7,6 +7,7 @@ import useLogout from '../hooks/useLogout';
 // import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Header from "./Header";
+import classes from '../index.module.sass';
 
 function Dashboard() {
     let token = sessionStorage.getItem('token')
@@ -58,33 +59,42 @@ function Dashboard() {
       },
     ];
   
-  return <div className='container-fluid1'>
-    <Header/>
-        <div style={{ display: 'flex', gap: '50px' }}>
-      {cardData.map((card, index) => (
-        <Card key={index} style={{ width: '40rem' ,height:'33rem'}}>
-          <Card.Img variant="top" src={card.imageUrl} />
-          <Card.Body>
-            <Card.Title>{card.title}</Card.Title>
-            <Card.Text>{card.createdAt}</Card.Text>
-            <Card.Text>{card.content}</Card.Text>
-            <Button
-            variant='contained'
-            color='primary'
-            type='submit'
-            fullWidth
-            style={{ marginTop: "10px", width: "90%" , backgroundColor: "pink" }}
-          >
-            Watch
-          </Button>
-          </Card.Body>
-        </Card>
-      ))}
-
-    </div>
-  
-
-  </div>
-}
+    return (
+      <div className={classes.fluid}>
+        <Header />
+        <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+          {cardData.map((card, index) => (
+            <div key={index} className="col-12 col-md-4 mb-4">
+              <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
+                <Card.Body className="d-flex flex-column">
+                  <Card.Img
+                    variant="top"
+                    src={card.imageUrl}
+                    style={{ height: '250px' }}
+                  />
+                  <Card.Title className={classes.Card}>{card.title}</Card.Title>
+                  <Card.Text>{card.createdAt}</Card.Text>
+                  <Card.Text>{card.content}</Card.Text>
+                </Card.Body>
+                <div className="d-flex justify-content-between align-items-start mb-3">
+                    <span className="mr-2">
+                      <i className="fas fa-heart"></i> 
+                    </span>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      style={{ backgroundColor: 'orange' }}
+                    >
+                      Watch
+                    </Button>
+                  </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+      }
 
 export default Dashboard

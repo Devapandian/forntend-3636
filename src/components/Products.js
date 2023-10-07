@@ -67,37 +67,36 @@ function Dashboard() {
 
     ];
   
-    const firstRowCards = cardData.slice(0, 2); 
+    const firstRowCards = cardData.slice(0, 3); 
 
 
-  return <div className='container-fluid1'>
-    <Header/>
-    <div style={{ display: 'flex', gap: '50px', flexWrap: 'wrap' }}>
-      {cardData.map((card, index) => (
-        <Card key={index} style={{ width: '40rem' ,height:'40rem'}}>
-          <Card.Img variant="top" src={card.imageUrl} />
-          <Card.Body>
-            <Card.Title>{card.title}</Card.Title>
-            <Card.Text>{card.createdAt}</Card.Text>
-            <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-            <Card.Text>${card.price}</Card.Text>
-            <Button
-            variant='contained'
-            color='primary'
-            type='submit'
-            fullWidth
-            style={{ marginTop: "10px", width: "100%" , backgroundColor: "orange" }}
-          >
-            Add cart
-          </Button>
-          </Card.Body>
-        </Card>
-      ))}
-
-    </div>
-  
-
-  </div>
-}
+    return (
+      <div className="fluid">
+                <Header />
+      <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+        {cardData.map((card, index) => (
+          <Card key={index} style={{ width: '20rem', height: '20rem', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
+            <Card.Img variant="top" src={card.imageUrl} />
+            <Card.Body style={{ textAlign: 'center' }}>
+              <Card.Title>{card.title}</Card.Title>
+              <Card.Text>{card.createdAt}</Card.Text>
+              <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+              <Card.Text>${card.price}</Card.Text>
+              <Button
+                variant='contained'
+                color='primary'
+                type='submit'
+                fullWidth
+                style={{ marginTop: "2px", width: "90%", backgroundColor: "orange" }}
+              >
+                Add to Cart
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+      </div>
+    );
+  }
 
 export default Dashboard

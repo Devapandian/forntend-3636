@@ -12,14 +12,22 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
 } from "firebase/auth";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'; // Import the CSS styles
+
 
 const Signin = () => {
   const { googleSignIn, githubSignIn } = UserAuth();
   const navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const [user, setUser] = useState(null);
   const [value, setValue] = useState("");
-
+  const handlePhoneNumberChange = (newPhoneNumber) => {
+    // Update the state or perform any necessary actions
+    setPhoneNumber(newPhoneNumber);
+  };
+  
   const handleGoogleSignIn = async (e) => {
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -150,6 +158,14 @@ const Signin = () => {
               },
             }}
           />
+          <PhoneInput
+  international
+  defaultCountry="US"
+  value={phoneNumber}
+  onChange={handlePhoneNumberChange}
+  style={{ border: "2px solid white", color: "white" }}
+/>
+
           <div style={{ textAlign: "center" }}>
             <Button
               variant="contained"

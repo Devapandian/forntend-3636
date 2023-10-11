@@ -66,9 +66,9 @@ function Dashboard() {
         <div className="row">
           {cardData.map((card, index) => (
             <div key={index} className="col-12 col-md-4 mb-4">
-              <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
+              <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',marginTop:"20px",width:"350px" }}>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Img variant="top" src={card.imageUrl} style={{ height: '250px' }} />
+                  <Card.Img variant="top" src={card.imageUrl} style={{ height: '180px' }} />
                   <Card.Title className={classes.Card}>{card.title}</Card.Title>
                   <Card.Text>{card.createdAt}</Card.Text>
                   <Card.Text>{card.content}</Card.Text>

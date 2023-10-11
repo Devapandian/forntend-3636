@@ -8,7 +8,9 @@ import TextField from "@mui/material/TextField";
 import {
   getAuth,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   signInWithPopup,
+  signInWithEmailAndPassword,
   FacebookAuthProvider,
   GithubAuthProvider,
 } from "firebase/auth";
@@ -20,9 +22,14 @@ const Signin = () => {
   const { googleSignIn, githubSignIn } = UserAuth();
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [user, setUser] = useState(null);
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const handlePhoneNumberChange = (newPhoneNumber) => {
     // Update the state or perform any necessary actions
     setPhoneNumber(newPhoneNumber);
@@ -46,6 +53,22 @@ const Signin = () => {
   console.log(user);
 
   useEffect(() => {}, [user]);
+  console.log(user);
+  const handleEmailPasswordLogin = async (e) => {
+    e.preventDefault();
+
+    const auth = getAuth();
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // User is logged in successfully
+      navigate("/Dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  
+
   console.log(user);
 
   const handleFacebookSignIn = async (e) => {
@@ -84,28 +107,28 @@ const Signin = () => {
   };
   console.log(user);
   console.log(user);
-  const handleSignin = async (e) => {
-    e.preventDefault();
+  // const handleSignin = async (e) => {
+  //   e.preventDefault();
 
-    let data = {
-      email: e.target.email.value,
-      password: e.target.password.value,
-    };
-    console.log(data);
-    try {
-      let res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/user/signIn`,
-        data
-      );
-      if (res.status === 200) {
-        toast.success(res.data.message);
-        sessionStorage.setItem("token", res.data.token);
-        navigate("/Dashboard");
-      }
-    } catch (error) {
-      toast.error(error.response.data.error || error.response.data.message);
-    }
-  };
+  //   let data = {
+  //     email: e.target.email.value,
+  //     password: e.target.password.value,
+  //   };
+  //   console.log(data);
+  //   try {
+  //     let res = await axios.post(
+  //       `${process.env.REACT_APP_API_URL}/user/signIn`,
+  //       data
+  //     );
+  //     if (res.status === 200) {
+  //       toast.success(res.data.message);
+  //       sessionStorage.setItem("token", res.data.token);
+  //       navigate("/Dashboard");
+  //     }
+  //   } catch (error) {
+  //     toast.error(error.response.data.error || error.response.data.message);
+  //   }
+  // };
 
   return (
     <div
@@ -128,43 +151,34 @@ const Signin = () => {
         SIGN IN
       </h1>
       <div style={{ maxWidth: "440px", margin: "auto", padding: "20px" }}>
-        <form onSubmit={handleSignin}>
-          <TextField
-            label="Email address"
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            variant="standard"
-            margin="normal"
-            fullWidth
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            label="Password"
-            type="password"
-            placeholder="Password"
-            name="password"
-            variant="standard"
-            margin="normal"
-            style={{ borderbottom: "2px solid white" }}
-            fullWidth
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <PhoneInput
+      <form onSubmit={handleEmailPasswordLogin}>
+        <TextField
+          label="Email address"
+          type="email"
+          placeholder="Enter email"
+          variant="standard"
+          margin="normal"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          placeholder="Password"
+          variant="standard"
+          margin="normal"
+          fullWidth
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+          {/* <PhoneInput
   international
   defaultCountry="US"
   value={phoneNumber}
   onChange={handlePhoneNumberChange}
   style={{ border: "2px solid white", color: "white" }}
-/>
+/> */}
 
           <div style={{ textAlign: "center" }}>
             <Button

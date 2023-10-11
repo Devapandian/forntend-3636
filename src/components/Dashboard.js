@@ -61,39 +61,38 @@ function Dashboard() {
   
     return (
       <div className={classes.fluid}>
-        <Header />
-        <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+      <Header />
+      <div className="container">
+        <div className="row">
           {cardData.map((card, index) => (
             <div key={index} className="col-12 col-md-4 mb-4">
               <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Img
-                    variant="top"
-                    src={card.imageUrl}
-                    style={{ height: '250px' }}
-                  />
+                  <Card.Img variant="top" src={card.imageUrl} style={{ height: '250px' }} />
                   <Card.Title className={classes.Card}>{card.title}</Card.Title>
                   <Card.Text>{card.createdAt}</Card.Text>
                   <Card.Text>{card.content}</Card.Text>
                 </Card.Body>
                 <div className="d-flex justify-content-between align-items-start mb-3">
-                    <span className="mr-2">
-                      <i className="fas fa-heart"></i> 
-                    </span>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      style={{ backgroundColor: 'orange' }}
-                    >
-                      Watch
-                    </Button>
-                  </div>
+                  <span className="mr-2">
+                    <i className="fas fa-heart"></i>
+                  </span>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    style={{ backgroundColor: 'orange' }}
+                  >
+                    Watch
+                  </Button>
+                </div>
               </Card>
             </div>
           ))}
         </div>
       </div>
+    </div>
+
     );
       }
 

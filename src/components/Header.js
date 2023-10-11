@@ -9,11 +9,14 @@ import Dropdown from "react-bootstrap/Dropdown";
 import useLogout from "../hooks/useLogout";
 import { UserAuth } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const pages = ["Products", "pricing", "Blog"];
+  const pages = ["Products", "pricing", "Blog","shop","Offer"];
   const settings = ["Profile", "Account", "ShoppingCart", "Logout"];
 
   const handleOpenNavMenu = (event) => {
@@ -49,7 +52,7 @@ function Header() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
+    <Navbar bg="orange" variant="orange" expand="md" style={{  color: "white" }}>
       <Container>
         <Navbar.Brand href="/Dashboard">
           <svg
@@ -79,7 +82,9 @@ function Header() {
               onToggle={handleOpenUserMenu}
               show={Boolean(anchorElUser)}
             >
-              <Button onClick={() => handleLogout()}>Logout</Button>2
+            <Button variant="link" onClick={() => handleLogout()}>
+              <FontAwesomeIcon icon={faSignOutAlt} style={{ color: "white" }} />
+            </Button>
               <Dropdown.Menu className="mt-3" aria-labelledby="user-dropdown">
                 {settings.map((setting, index) => (
                   <Dropdown.Item

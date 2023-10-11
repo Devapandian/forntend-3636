@@ -52,7 +52,7 @@ function Header() {
   };
 
   return (
-    <Navbar bg="orange" variant="orange" expand="md" style={{  color: "white" }}>
+    <Navbar bg="orange" variant="orange" expand="md" style={{ backgroundColor: "pink", color: "white" }}>
       <Container>
         <Navbar.Brand href="/Dashboard">
           <svg

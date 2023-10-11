@@ -150,54 +150,68 @@ const Signin = () => {
       >
         SIGN IN
       </h1>
-      <div style={{ maxWidth: "440px", margin: "auto", padding: "20px" }}>
+      <div style={{ maxWidth: "440px", margin: "auto", padding: "20px",color:'white' }}>
       <form onSubmit={handleEmailPasswordLogin}>
-        <TextField
-          label="Email address"
-          type="email"
-          placeholder="Enter email"
-          variant="standard"
-          margin="normal"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          placeholder="Password"
-          variant="standard"
-          margin="normal"
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-          {/* <PhoneInput
-  international
-  defaultCountry="US"
-  value={phoneNumber}
-  onChange={handlePhoneNumberChange}
-  style={{ border: "2px solid white", color: "white" }}
-/> */}
+  <TextField
+    label="Email address"
+    type="email"
+    placeholder="Enter email"
+    variant="standard"
+    margin="normal"
+    fullWidth
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    InputLabelProps={{
+      style: {
+        color: "white", 
+      },
+    }}
+    InputProps={{
+      style: {
+        color: "white", 
+      },
+    }}
+  />
+  <TextField
+    label="Password"
+    type="password"
+    placeholder="Password"
+    variant="standard"
+    margin="normal"
+    fullWidth
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    InputLabelProps={{
+      style: {
+        color: "white", // Change the label text color
+      },
+    }}
+    InputProps={{
+      style: {
+        color: "white", // Change the input text color
+      },
+    }}
+  />
 
-          <div style={{ textAlign: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              fullWidth
-              style={{
-                marginTop: "18px",
-                width: "30%",
-                backgroundColor: "green",
-                color: "white",
-              }}
-            >
-              Submit
-            </Button>
-          </div>
-          &nbsp;
-        </form>
+  <div style={{ textAlign: "center" }}>
+    <Button
+      variant="contained"
+      color="primary"
+      type="submit"
+      fullWidth
+      style={{
+        marginTop: "18px",
+        width: "30%",
+        backgroundColor: "green",
+        color: "white", // Change the button text color
+      }}
+    >
+      Submit
+    </Button>
+  </div>
+  &nbsp;
+</form>
+
         <Button
           variant="contained"
           type="submit"

@@ -8,6 +8,7 @@ import useLogout from '../hooks/useLogout';
 import Card from 'react-bootstrap/Card';
 import Header from "./Header";
 import classes from '../index.module.sass';
+import Sidebar from './Sidebar';
 
 function Dashboard() {
     let token = sessionStorage.getItem('token')
@@ -61,6 +62,7 @@ function Dashboard() {
   
     return (
       <div className={classes.fluid}>
+
       <Header />
       <div className="container">
         <div className="row">

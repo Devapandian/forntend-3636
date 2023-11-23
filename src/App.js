@@ -6,6 +6,7 @@ import Products from "./components/Products";
 import { AuthContextProvider } from "./context/AuthContext";
 import Pricing from "./components/pricing";
 import Blog from "./components/Blog";
+import Login from "./components/login";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
       <Route path="/Products" element={<Products />} />
       <Route path="/Pricing" element={<Pricing />} />
       <Route path="/Blog" element={<Blog />} />
+      <Route path="/Login" element={<Login />} />
+
+
 
     </Routes>
     </AuthContextProvider>

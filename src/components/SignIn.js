@@ -16,6 +16,10 @@ import {
 } from "firebase/auth";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'; // Import the CSS styles
+import { Link } from 'react-router-dom';
+import Modal from "react-bootstrap/Modal";
+
+
 
 
 const Signin = () => {
@@ -34,7 +38,8 @@ const Signin = () => {
     // Update the state or perform any necessary actions
     setPhoneNumber(newPhoneNumber);
   };
-  
+
+
   const handleGoogleSignIn = async (e) => {
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -70,6 +75,41 @@ const Signin = () => {
   
 
   console.log(user);
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const id = "655f16b312950ef9bccfa541";
+
+  const handleSavePassword = async () => {
+    try {
+      if (!currentPassword || !newPassword) {
+        console.error("Current password and new password are required.");
+        return;
+      }
+
+      const response = await fetch(`http://localhost:3200/user/password/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          currentpassword: currentPassword,
+          newpassword: newPassword,
+        }),
+      });
+      
+      if (response.ok) {
+        console.log("Password changed successfully!");
+      } else {
+        console.error("Error changing password:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
+
+    setShowChangePasswordModal(false);
+  };
+
 
   const handleFacebookSignIn = async (e) => {
     const auth = getAuth();
@@ -107,28 +147,32 @@ const Signin = () => {
   };
   console.log(user);
   console.log(user);
-  // const handleSignin = async (e) => {
-  //   e.preventDefault();
+  const handleSignin = async (e) => {
+    e.preventDefault();
 
-  //   let data = {
-  //     email: e.target.email.value,
-  //     password: e.target.password.value,
-  //   };
-  //   console.log(data);
-  //   try {
-  //     let res = await axios.post(
-  //       `${process.env.REACT_APP_API_URL}/user/signIn`,
-  //       data
-  //     );
-  //     if (res.status === 200) {
-  //       toast.success(res.data.message);
-  //       sessionStorage.setItem("token", res.data.token);
-  //       navigate("/Dashboard");
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.response.data.error || error.response.data.message);
-  //   }
-  // };
+    let data = {
+      email: e.target.email?.value,
+      password: e.target.password?.value,
+    };
+    console.log(data);
+    try {
+      let res = await axios.post(
+        `http://localhost:3200/user/signin`,
+        { email, password }
+      );
+      if (res.status === 200) {
+        toast.success(res?.data?.message);
+        sessionStorage.setItem("token", res.data?.token);
+        navigate("/Dashboard");
+      } else {
+        console.error("Unexpected response:", res);
+      }
+    } catch (error) {
+      console.error("Axios request error:", error);
+      toast.error(error.response.data.error || error.response.data.message);
+    }
+    
+  };
 
   return (
     <div
@@ -198,6 +242,8 @@ const Signin = () => {
       variant="contained"
       color="primary"
       type="submit"
+      onClick={handleSignin}
+
       fullWidth
       style={{
         marginTop: "18px",
@@ -210,8 +256,9 @@ const Signin = () => {
     </Button>
   </div>
   &nbsp;
-</form>
+  <Link onClick={() => setShowChangePasswordModal(true)}>Reset Password</Link>
 
+</form>
         <Button
           variant="contained"
           type="submit"
@@ -279,6 +326,36 @@ const Signin = () => {
           Facebook
         </Button>
       </div>
+      <Modal show={showChangePasswordModal} onHide={() => setShowChangePasswordModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <TextField
+            label="Current Password"
+            type="password"
+            fullWidth
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+          />&nbsp;&nbsp;
+          <TextField
+            label="New Password"
+            type="password"
+            fullWidth
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowChangePasswordModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSavePassword}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 };

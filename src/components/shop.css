@@ -1,0 +1,35 @@
+.main-img{
+    position:relative;
+    background-image:url("https://angular.pixelstrap.com/multikart/landing/assets/images/landing-page/home.jpg");
+    height:93vh;
+    width:100%;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    overflow:hidden;
+}
+.container-fluid{
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.main-img .main-contain{
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    align-items:center;
+    height:93vh;
+    width:100%;
+
+}
+.home-decor .decor.decor-1 {
+    top:11%;
+    left:8%;
+}
+.home-decor .decor{
+    position:absolute;
+}

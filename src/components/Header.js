@@ -16,7 +16,7 @@ import Image from "../image/imag.jpg";
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const pages = ["Products", "pricing", "Blog","shop","Offer"];
+  const pages = ["Products", "Pricing", "Blog","Shop","Offer"];
   const settings = ["Profile", "Account", "ShoppingCart", "Logout"];
 
   const handleOpenNavMenu = (event) => {

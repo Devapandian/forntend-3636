@@ -68,7 +68,7 @@ const Shop = () => {
             className="main-contain"
           >
             <div>
-              <h1 style={{ color: "red", display: "block", letterSpacing: "0.03em", fontSize: "30px", paddingLeft: "110px", lineHeight: "1.5", fontWeight: "bold", fontFamily: "sans-serif" }} className="m-0">
+              <h1 style={{ color: "red", display: "block", letterSpacing: "0.03em", fontSize: "30px", paddingLeft: "130px", lineHeight: "1.5", fontWeight: "bold", fontFamily: "sans-serif" }} className="m-0">
                 MULTI
                 <span style={{ color: "black" }}>SHOP</span>
               </h1>&nbsp;
@@ -102,7 +102,8 @@ const Shop = () => {
                 visibility: 'visible',
                 animationName: 'zoomIn',
                 transform: 'translateX(2.81333%) translateY(2.08%)',
-                marginLeft: '300%', 
+                marginLeft: '280%', 
+                // marginTop:"150%",
                 width:"190px",
                 animationDuration: '1s', 
                 animationTimingFunction: 'ease', 
@@ -119,6 +120,8 @@ const Shop = () => {
             </div>
 
           </div>
+
+
         </div>
       </section>
     </div>

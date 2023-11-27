@@ -8,6 +8,8 @@ import Pricing from "./components/pricing";
 import Blog from "./components/Blog";
 import Login from "./components/login";
 import Shop from "./components/shop";
+import Offer from "./components/offer";
+import Signup from "./components/signup/signup"
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/shop" element={<Shop />} />
+      <Route path="/offer" element={<Offer />} />
+      <Route path="/signup" element={<Signup />} />
+
 
 
 

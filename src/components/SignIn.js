@@ -269,7 +269,7 @@ const Signin = () => {
               </Button>
             </div>
             &nbsp;
-            <Link onClick={() => setShowChangePasswordModal(true)}>Reset Password</Link>
+            <Link  style={{color:"black" , paddingLeft:"270px" , textDecoration:"none"}} onClick={() => setShowChangePasswordModal(true)}>Change Password</Link>
 
           </form>
           <Button

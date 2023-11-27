@@ -72,31 +72,36 @@ function Dashboard() {
 
     return (
       <div className="fluid">
-                <Header />
-      <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+      <Header />
+      <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap',marginTop:"20px", justifyContent: 'center', alignItems: 'center' }}>
         {cardData.map((card, index) => (
-          <Card key={index} style={{ width: '20rem', height: '20rem', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
-            <Card.Img variant="top" src={card.imageUrl} />
-            <Card.Body style={{ textAlign: 'center' }}>
-              <Card.Title>{card.title}</Card.Title>
-              <Card.Text>{card.createdAt}</Card.Text>
-              <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-              <Card.Text>${card.price}</Card.Text>
-              <Button
-                variant='contained'
-                color='primary'
-                type='submit'
-                fullWidth
-                style={{ marginTop: "2px", width: "90%", backgroundColor: "orange" }}
-              >
-                Add to Cart
-              </Button>
+          <Card key={index} style={{ width: '20rem', height: '25rem', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' }}>
+            <Card.Img variant="top" src={card.imageUrl} style={{ height: '50%', objectFit: 'cover' }} />
+            <Card.Body style={{ textAlign: 'center', height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <Card.Title style={{ fontSize: '1.5rem' }}>{card.title}</Card.Title>
+                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+              </div>
+              <div>
+                <Card.Text>${card.price}</Card.Text>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  type='submit'
+                  fullWidth
+                  style={{ marginTop: "1px", backgroundColor: "orange" }}
+                >
+                  Add to Cart
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         ))}
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
+
+  
 
 export default Dashboard
